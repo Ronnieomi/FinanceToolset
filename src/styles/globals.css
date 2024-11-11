@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-secondary;
+  }
+}
+
+@layer components {
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  
+  .heading-1 {
+    @apply text-4xl md:text-5xl font-bold;
+  }
+  
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+  
+  .subheading {
+    @apply text-lg text-muted;
+  }
+}
+
+.nav-bar{
+    transform: translateX(-50%) !important;
+}
