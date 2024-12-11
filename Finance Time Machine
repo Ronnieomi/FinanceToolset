@@ -1,0 +1,60 @@
+import datetime
+import matplotlib.pyplot as plt
+
+class FinanceTimeMachine:
+    def __init__(self, user_data):
+        self.user_data = user_data
+
+    def simulate_past(self, start_date, end_date):
+        # Simulate financial data between start_date and end_date
+        simulated_data = []
+        current_date = start_date
+        while current_date <= end_date:
+            # Simplified financial simulation logic
+            data_point = {
+                'date': current_date,
+                'balance': self.user_data['initial_balance'] * (1 + 0.01 * (current_date.year - start_date.year))
+            }
+            simulated_data.append(data_point)
+            current_date += datetime.timedelta(days=365)
+        return simulated_data
+
+    def predict_future(self, start_date, years):
+        # Predict future financial outcomes for a given number of years
+        predicted_data = []
+        current_date = start_date
+        end_date = start_date + datetime.timedelta(days=365 * years)
+        while current_date <= end_date:
+            # Simplified financial prediction logic
+            data_point = {
+                'date': current_date,
+                'balance': self.user_data['initial_balance'] * (1 + 0.05 * (current_date.year - start_date.year))
+            }
+            predicted_data.append(data_point)
+            current_date += datetime.timedelta(days=365)
+        return predicted_data
+
+    def plot_finances(self, data, title):
+        # Plot financial data on a timeline
+        dates = [d['date'] for d in data]
+        balances = [d['balance'] for d in data]
+        plt.plot(dates, balances)
+        plt.xlabel('Date')
+        plt.ylabel('Balance')
+        plt.title(title)
+        plt.show()
+
+# Example usage
+user_data = {
+    'initial_balance': 1000
+}
+
+time_machine = FinanceTimeMachine(user_data)
+
+# Simulate past from 2010 to 2020
+past_data = time_machine.simulate_past(datetime.datetime(2010, 1, 1), datetime.datetime(2020, 1, 1))
+time_machine.plot_finances(past_data, 'Past Financial Simulation')
+
+# Predict future for the next 10 years from today
+future_data = time_machine.predict_future(datetime.datetime.now(), 10)
+time_machine.plot_finances(future_data, 'Future Financial Prediction')
