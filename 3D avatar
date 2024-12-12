@@ -1,0 +1,75 @@
+// Import necessary libraries
+
+import * as THREE from 'three';
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+
+
+// Create the scene, camera, and renderer
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({
+
+  canvas: document.getElementById('avatar-canvas'),
+
+  antialias: true
+
+});
+
+
+
+// Create the 3D avatar
+
+const avatar = new THREE.Mesh(
+
+  new THREE.SphereGeometry(1, 32, 32),
+
+  new THREE.MeshBasicMaterial({ color: 0xffffff })
+
+);
+
+scene.add(avatar);
+
+
+
+// Create the orbit controls
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+
+
+// Animate the scene
+
+function animate() {
+
+  requestAnimationFrame(animate);
+
+  controls.update();
+
+  renderer.render(scene, camera);
+
+}
+
+
+
+// Initialize the scene
+
+function init() {
+
+  camera.position.z = 5;
+
+  animate();
+
+}
+
+
+
+// Initialize the scene when the window loads
+
+window.addEventListener('load', init);
+
+```
