@@ -1,0 +1,25 @@
+```
+import git
+
+def create_new_branch(branch_name):
+    """
+    Create a new branch in the Git repository.
+
+    Args:
+        branch_name (str): The name of the new branch.
+    """
+    # Initialize the Git repository
+    repo = git.Repo()
+
+    # Create a new branch
+    repo.git.branch(branch_name)
+
+    # Checkout the new branch
+    repo.git.checkout(branch_name)
+
+    print(f"New branch '{branch_name}' created and checked out.")
+
+Example usage
+branch_name = "feature/customizable-interaction"
+create_new_branch(branch_name)
+```
